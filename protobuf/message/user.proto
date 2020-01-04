@@ -16,10 +16,11 @@ message Credentials{
 
 message LoginResult{
     bool ok = 1;
-    AccessToken data = 2;
+    string error = 2;
+    AccessToken data = 3;
 }
 
-message FormRegister{
+message UserData{
     string first_name = 1;
     string last_name = 2;
     string username = 3;
@@ -35,21 +36,13 @@ message RegisterResult{
     AccessToken data = 3;
 }
 
-message UserData{
-  string first_name = 1;
-  string last_name =2;
-  string username = 3;
-  string email = 4;
-  string phone_number =5;
-  string address = 6;
-}
 
-message UpdateUserDataByUserName{
-  string username = 1;
+message UpdateUserDataByAccessToken{
+  string access_token  = 1; 
   UserData data  = 2;
 }
 
-message UpdateUserDataByUserNameResult{
+message UpdateUserDataByAccessTokenResult{
   bool ok = 1;
   string error = 2;
 }
@@ -58,8 +51,15 @@ message UserName{
   string username =1;
 }
 
-message GetUserDataByUserNameResult{
+message GetUserDataByAccessToken{
   bool ok  = 1;
   string error =2;
-  UserData data = 3;
+  string username = 3;
+  UserData data = 4;
+}
+
+message GetUserDataByAccessTokenResult{
+  bool ok  =  1;
+  string error =2;
+  UserData data =3;
 }
