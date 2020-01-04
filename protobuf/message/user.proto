@@ -49,11 +49,16 @@ message UpdateUserDataByUserName{
   FormRegister data  = 2;
 }
 
-message GetUserByUserName{
+message UpdateUserDataByUserNameResult{
+  bool ok = 1;
+  string error = 2;
+}
+
+message UserName{
   string username =1;
 }
 
-message GetUserByUserNameResult{
+message GetUserDataByUserNameResult{
   bool ok  = 1;
   string error =2;
   UserData data = 3;

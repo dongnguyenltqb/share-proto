@@ -28,18 +28,21 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 func init() { proto.RegisterFile("rpc/user.proto", fileDescriptor_27d7a9c2ccec3127) }
 
 var fileDescriptor_27d7a9c2ccec3127 = []byte{
-	// 165 bytes of a gzipped FileDescriptorProto
+	// 222 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x2b, 0x2a, 0x48, 0xd6,
 	0x2f, 0x2d, 0x4e, 0x2d, 0xd2, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x2e, 0x2a, 0x48, 0x96,
-	0x12, 0xca, 0x4d, 0x2d, 0x2e, 0x4e, 0x4c, 0x4f, 0x45, 0x92, 0x30, 0x6a, 0x66, 0xe4, 0x62, 0x09,
-	0x2d, 0x4e, 0x2d, 0x12, 0xb2, 0xe4, 0xe2, 0x04, 0xd1, 0x3e, 0xf9, 0xe9, 0x99, 0x79, 0x42, 0x22,
-	0x7a, 0x50, 0xa5, 0x7a, 0xce, 0x45, 0xa9, 0x29, 0xa9, 0x79, 0x25, 0x99, 0x89, 0x39, 0xc5, 0x52,
-	0x08, 0x51, 0xb0, 0xaa, 0xa0, 0xd4, 0xe2, 0xd2, 0x9c, 0x12, 0x25, 0x06, 0x21, 0x07, 0x2e, 0x1e,
-	0x90, 0xd6, 0xa0, 0xd4, 0xf4, 0xcc, 0xe2, 0x92, 0xd4, 0x22, 0x21, 0x51, 0xb8, 0x3a, 0xb7, 0xfc,
-	0xa2, 0x5c, 0x98, 0xb0, 0x94, 0x38, 0x5c, 0x18, 0x26, 0x04, 0x33, 0xc1, 0x49, 0x3a, 0x4a, 0xb2,
-	0x38, 0x23, 0xb1, 0x28, 0x55, 0x17, 0xec, 0x28, 0x7d, 0x30, 0xa9, 0x9b, 0x9e, 0x9a, 0xa7, 0x5f,
-	0x54, 0x90, 0x9c, 0xc4, 0x06, 0xe6, 0x1a, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff, 0x67, 0xbc, 0xc7,
-	0xda, 0xd4, 0x00, 0x00, 0x00,
+	0x12, 0xca, 0x4d, 0x2d, 0x2e, 0x4e, 0x4c, 0x4f, 0x45, 0x92, 0x30, 0x3a, 0xc8, 0xc4, 0xc5, 0x12,
+	0x5a, 0x9c, 0x5a, 0x24, 0x14, 0xc4, 0x25, 0xea, 0x9e, 0x5a, 0x02, 0x62, 0xba, 0x24, 0x96, 0x24,
+	0x3a, 0x55, 0x82, 0x58, 0x7e, 0x89, 0xb9, 0xa9, 0x42, 0x82, 0x7a, 0x50, 0x6d, 0x7a, 0x30, 0x21,
+	0x29, 0x15, 0xb8, 0x10, 0x56, 0x2d, 0x41, 0xa9, 0xc5, 0xa5, 0x39, 0x25, 0x4a, 0x0c, 0x42, 0x19,
+	0x5c, 0x12, 0xa1, 0x05, 0x29, 0x89, 0x25, 0xa9, 0x58, 0x8c, 0x55, 0x44, 0x18, 0x8b, 0x43, 0x89,
+	0x94, 0x3a, 0x41, 0x25, 0x70, 0x9b, 0x2c, 0xb9, 0x38, 0x41, 0x62, 0x3e, 0xf9, 0xe9, 0x99, 0x79,
+	0x42, 0x22, 0x70, 0x7d, 0xce, 0x45, 0xa9, 0x29, 0xa9, 0x79, 0x25, 0x99, 0x89, 0x39, 0xc5, 0x52,
+	0x08, 0x51, 0xb0, 0x2a, 0xb8, 0x56, 0x07, 0x2e, 0x1e, 0x90, 0xd6, 0xa0, 0xd4, 0xf4, 0xcc, 0xe2,
+	0x92, 0xd4, 0x22, 0x21, 0x51, 0xb8, 0x3a, 0xb7, 0xfc, 0xa2, 0x5c, 0x98, 0xb0, 0x94, 0x38, 0x5c,
+	0x18, 0x26, 0x04, 0x33, 0xc1, 0x49, 0x3a, 0x4a, 0xb2, 0x38, 0x23, 0xb1, 0x28, 0x55, 0x17, 0x1c,
+	0xa4, 0xfa, 0x60, 0x52, 0x37, 0x3d, 0x35, 0x4f, 0xbf, 0xa8, 0x20, 0x39, 0x89, 0x0d, 0xcc, 0x35,
+	0x06, 0x04, 0x00, 0x00, 0xff, 0xff, 0xb5, 0xf9, 0xdc, 0x14, 0x92, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -54,6 +57,8 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type UserClient interface {
+	GetUserDataByUserName(ctx context.Context, in *message.UserName, opts ...grpc.CallOption) (*message.GetUserDataByUserNameResult, error)
+	UpdateUserDataByUserName(ctx context.Context, in *message.UpdateUserDataByUserName, opts ...grpc.CallOption) (*message.UpdateUserDataByUserNameResult, error)
 	UserLogin(ctx context.Context, in *message.Credentials, opts ...grpc.CallOption) (*message.LoginResult, error)
 	UserRegister(ctx context.Context, in *message.FormRegister, opts ...grpc.CallOption) (*message.RegisterResult, error)
 }
@@ -64,6 +69,24 @@ type userClient struct {
 
 func NewUserClient(cc *grpc.ClientConn) UserClient {
 	return &userClient{cc}
+}
+
+func (c *userClient) GetUserDataByUserName(ctx context.Context, in *message.UserName, opts ...grpc.CallOption) (*message.GetUserDataByUserNameResult, error) {
+	out := new(message.GetUserDataByUserNameResult)
+	err := c.cc.Invoke(ctx, "/rpc.User/GetUserDataByUserName", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) UpdateUserDataByUserName(ctx context.Context, in *message.UpdateUserDataByUserName, opts ...grpc.CallOption) (*message.UpdateUserDataByUserNameResult, error) {
+	out := new(message.UpdateUserDataByUserNameResult)
+	err := c.cc.Invoke(ctx, "/rpc.User/UpdateUserDataByUserName", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *userClient) UserLogin(ctx context.Context, in *message.Credentials, opts ...grpc.CallOption) (*message.LoginResult, error) {
@@ -86,6 +109,8 @@ func (c *userClient) UserRegister(ctx context.Context, in *message.FormRegister,
 
 // UserServer is the server API for User service.
 type UserServer interface {
+	GetUserDataByUserName(context.Context, *message.UserName) (*message.GetUserDataByUserNameResult, error)
+	UpdateUserDataByUserName(context.Context, *message.UpdateUserDataByUserName) (*message.UpdateUserDataByUserNameResult, error)
 	UserLogin(context.Context, *message.Credentials) (*message.LoginResult, error)
 	UserRegister(context.Context, *message.FormRegister) (*message.RegisterResult, error)
 }
@@ -94,6 +119,12 @@ type UserServer interface {
 type UnimplementedUserServer struct {
 }
 
+func (*UnimplementedUserServer) GetUserDataByUserName(ctx context.Context, req *message.UserName) (*message.GetUserDataByUserNameResult, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserDataByUserName not implemented")
+}
+func (*UnimplementedUserServer) UpdateUserDataByUserName(ctx context.Context, req *message.UpdateUserDataByUserName) (*message.UpdateUserDataByUserNameResult, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserDataByUserName not implemented")
+}
 func (*UnimplementedUserServer) UserLogin(ctx context.Context, req *message.Credentials) (*message.LoginResult, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserLogin not implemented")
 }
@@ -103,6 +134,42 @@ func (*UnimplementedUserServer) UserRegister(ctx context.Context, req *message.F
 
 func RegisterUserServer(s *grpc.Server, srv UserServer) {
 	s.RegisterService(&_User_serviceDesc, srv)
+}
+
+func _User_GetUserDataByUserName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(message.UserName)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).GetUserDataByUserName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rpc.User/GetUserDataByUserName",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).GetUserDataByUserName(ctx, req.(*message.UserName))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_UpdateUserDataByUserName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(message.UpdateUserDataByUserName)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).UpdateUserDataByUserName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rpc.User/UpdateUserDataByUserName",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).UpdateUserDataByUserName(ctx, req.(*message.UpdateUserDataByUserName))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _User_UserLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -145,6 +212,14 @@ var _User_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "rpc.User",
 	HandlerType: (*UserServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetUserDataByUserName",
+			Handler:    _User_GetUserDataByUserName_Handler,
+		},
+		{
+			MethodName: "UpdateUserDataByUserName",
+			Handler:    _User_UpdateUserDataByUserName_Handler,
+		},
 		{
 			MethodName: "UserLogin",
 			Handler:    _User_UserLogin_Handler,

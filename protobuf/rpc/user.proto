@@ -7,6 +7,8 @@ option go_package="share-proto/proto-gen/rpc";
 import "message/user.proto";
 
 service User{
+    rpc GetUserDataByUserName(message.UserName) returns (message.GetUserDataByUserNameResult){};
+    rpc UpdateUserDataByUserName(message.UpdateUserDataByUserName) returns(message.UpdateUserDataByUserNameResult){};
     rpc UserLogin(message.Credentials) returns (message.LoginResult){};
     rpc UserRegister(message.FormRegister) returns (message.RegisterResult){};
 }
