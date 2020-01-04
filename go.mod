@@ -1,4 +1,4 @@
-module shareproto
+module share-proto
 
 go 1.13
 

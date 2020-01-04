@@ -1,7 +1,7 @@
 syntax  = "proto3";
 
 package message;
-option go_package = "shareproto/proto-gen/message";
+option go_package = "share-proto/proto-gen/message";
 
 
 message AccessToken{

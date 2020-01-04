@@ -1,4 +1,4 @@
-# share proto gen
+# share proto
 
 ## gen message proto
 
