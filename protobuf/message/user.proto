@@ -46,7 +46,7 @@ message UserData{
 
 message UpdateUserDataByUserName{
   string username = 1;
-  FormRegister data  = 2;
+  UserData data  = 2;
 }
 
 message UpdateUserDataByUserNameResult{
