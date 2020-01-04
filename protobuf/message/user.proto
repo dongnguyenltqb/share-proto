@@ -1,6 +1,7 @@
 syntax  = "proto3";
 
 package message;
+
 option go_package = "share-proto/proto-gen/message";
 
 
@@ -20,18 +21,40 @@ message LoginResult{
 
 message FormRegister{
     string first_name = 1;
-    string last_nane = 2;
-    string email = 3;
-    string password  =4;
-    string phone_number = 5;
-    string address = 6;
+    string last_name = 2;
+    string username = 3;
+    string email = 4;
+    string password  =5;
+    string phone_number = 6;
+    string address = 7;
 }
 
 message RegisterResult{
     bool ok  = 1;
-    AccessToken data = 2;
+    string error = 2;
+    AccessToken data = 3;
 }
 
-message UpdateUserData{
-  FormRegister data  = 1;
+message UserData{
+  string first_name = 1;
+  string last_name =2;
+  string username = 3;
+  string email = 4;
+  string phone_number =5;
+  string address = 6;
+}
+
+message UpdateUserDataByUserName{
+  string username = 1;
+  FormRegister data  = 2;
+}
+
+message GetUserByUserName{
+  string username =1;
+}
+
+message GetUserByUserNameResult{
+  bool ok  = 1;
+  string error =2;
+  UserData data = 3;
 }
