@@ -20,18 +20,74 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type LoginRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	Password string `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+}
+
+func (x *LoginRequest) Reset() {
+	*x = LoginRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_protobuf_message_user_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *LoginRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LoginRequest) ProtoMessage() {}
+
+func (x *LoginRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_protobuf_message_user_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LoginRequest.ProtoReflect.Descriptor instead.
+func (*LoginRequest) Descriptor() ([]byte, []int) {
+	return file_protobuf_message_user_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *LoginRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *LoginRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
 type AccessToken struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccessToken string `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	AccessToken  string `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	RefreshToken string `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
 }
 
 func (x *AccessToken) Reset() {
 	*x = AccessToken{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_message_user_proto_msgTypes[0]
+		mi := &file_protobuf_message_user_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -44,7 +100,7 @@ func (x *AccessToken) String() string {
 func (*AccessToken) ProtoMessage() {}
 
 func (x *AccessToken) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_message_user_proto_msgTypes[0]
+	mi := &file_protobuf_message_user_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +113,7 @@ func (x *AccessToken) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AccessToken.ProtoReflect.Descriptor instead.
 func (*AccessToken) Descriptor() ([]byte, []int) {
-	return file_protobuf_message_user_proto_rawDescGZIP(), []int{0}
+	return file_protobuf_message_user_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *AccessToken) GetAccessToken() string {
@@ -67,73 +123,25 @@ func (x *AccessToken) GetAccessToken() string {
 	return ""
 }
 
-type Credentials struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
-	Password string `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-}
-
-func (x *Credentials) Reset() {
-	*x = Credentials{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_message_user_proto_msgTypes[1]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *Credentials) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Credentials) ProtoMessage() {}
-
-func (x *Credentials) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_message_user_proto_msgTypes[1]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Credentials.ProtoReflect.Descriptor instead.
-func (*Credentials) Descriptor() ([]byte, []int) {
-	return file_protobuf_message_user_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *Credentials) GetUsername() string {
+func (x *AccessToken) GetRefreshToken() string {
 	if x != nil {
-		return x.Username
+		return x.RefreshToken
 	}
 	return ""
 }
 
-func (x *Credentials) GetPassword() string {
-	if x != nil {
-		return x.Password
-	}
-	return ""
-}
-
-type LoginResult struct {
+type LoginResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Ok    bool         `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
-	Error string       `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
-	Data  *AccessToken `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
+	Success bool         `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Error   string       `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
+	Data    *AccessToken `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
 }
 
-func (x *LoginResult) Reset() {
-	*x = LoginResult{}
+func (x *LoginResponse) Reset() {
+	*x = LoginResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_protobuf_message_user_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -141,13 +149,13 @@ func (x *LoginResult) Reset() {
 	}
 }
 
-func (x *LoginResult) String() string {
+func (x *LoginResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*LoginResult) ProtoMessage() {}
+func (*LoginResponse) ProtoMessage() {}
 
-func (x *LoginResult) ProtoReflect() protoreflect.Message {
+func (x *LoginResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_protobuf_message_user_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -159,475 +167,26 @@ func (x *LoginResult) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use LoginResult.ProtoReflect.Descriptor instead.
-func (*LoginResult) Descriptor() ([]byte, []int) {
+// Deprecated: Use LoginResponse.ProtoReflect.Descriptor instead.
+func (*LoginResponse) Descriptor() ([]byte, []int) {
 	return file_protobuf_message_user_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *LoginResult) GetOk() bool {
+func (x *LoginResponse) GetSuccess() bool {
 	if x != nil {
-		return x.Ok
+		return x.Success
 	}
 	return false
 }
 
-func (x *LoginResult) GetError() string {
+func (x *LoginResponse) GetError() string {
 	if x != nil {
 		return x.Error
 	}
 	return ""
 }
 
-func (x *LoginResult) GetData() *AccessToken {
-	if x != nil {
-		return x.Data
-	}
-	return nil
-}
-
-type UserData struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	FirstName   string `protobuf:"bytes,1,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
-	LastName    string `protobuf:"bytes,2,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
-	Username    string `protobuf:"bytes,3,opt,name=username,proto3" json:"username,omitempty"`
-	Email       string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
-	Password    string `protobuf:"bytes,5,opt,name=password,proto3" json:"password,omitempty"`
-	PhoneNumber string `protobuf:"bytes,6,opt,name=phone_number,json=phoneNumber,proto3" json:"phone_number,omitempty"`
-	Address     string `protobuf:"bytes,7,opt,name=address,proto3" json:"address,omitempty"`
-}
-
-func (x *UserData) Reset() {
-	*x = UserData{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_message_user_proto_msgTypes[3]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *UserData) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UserData) ProtoMessage() {}
-
-func (x *UserData) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_message_user_proto_msgTypes[3]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UserData.ProtoReflect.Descriptor instead.
-func (*UserData) Descriptor() ([]byte, []int) {
-	return file_protobuf_message_user_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *UserData) GetFirstName() string {
-	if x != nil {
-		return x.FirstName
-	}
-	return ""
-}
-
-func (x *UserData) GetLastName() string {
-	if x != nil {
-		return x.LastName
-	}
-	return ""
-}
-
-func (x *UserData) GetUsername() string {
-	if x != nil {
-		return x.Username
-	}
-	return ""
-}
-
-func (x *UserData) GetEmail() string {
-	if x != nil {
-		return x.Email
-	}
-	return ""
-}
-
-func (x *UserData) GetPassword() string {
-	if x != nil {
-		return x.Password
-	}
-	return ""
-}
-
-func (x *UserData) GetPhoneNumber() string {
-	if x != nil {
-		return x.PhoneNumber
-	}
-	return ""
-}
-
-func (x *UserData) GetAddress() string {
-	if x != nil {
-		return x.Address
-	}
-	return ""
-}
-
-type RegisterResult struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Ok    bool         `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
-	Error string       `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
-	Data  *AccessToken `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
-}
-
-func (x *RegisterResult) Reset() {
-	*x = RegisterResult{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_message_user_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *RegisterResult) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RegisterResult) ProtoMessage() {}
-
-func (x *RegisterResult) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_message_user_proto_msgTypes[4]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RegisterResult.ProtoReflect.Descriptor instead.
-func (*RegisterResult) Descriptor() ([]byte, []int) {
-	return file_protobuf_message_user_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *RegisterResult) GetOk() bool {
-	if x != nil {
-		return x.Ok
-	}
-	return false
-}
-
-func (x *RegisterResult) GetError() string {
-	if x != nil {
-		return x.Error
-	}
-	return ""
-}
-
-func (x *RegisterResult) GetData() *AccessToken {
-	if x != nil {
-		return x.Data
-	}
-	return nil
-}
-
-type UpdateUserDataByAccessToken struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	AccessToken string    `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
-	Data        *UserData `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
-}
-
-func (x *UpdateUserDataByAccessToken) Reset() {
-	*x = UpdateUserDataByAccessToken{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_message_user_proto_msgTypes[5]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *UpdateUserDataByAccessToken) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateUserDataByAccessToken) ProtoMessage() {}
-
-func (x *UpdateUserDataByAccessToken) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_message_user_proto_msgTypes[5]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateUserDataByAccessToken.ProtoReflect.Descriptor instead.
-func (*UpdateUserDataByAccessToken) Descriptor() ([]byte, []int) {
-	return file_protobuf_message_user_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *UpdateUserDataByAccessToken) GetAccessToken() string {
-	if x != nil {
-		return x.AccessToken
-	}
-	return ""
-}
-
-func (x *UpdateUserDataByAccessToken) GetData() *UserData {
-	if x != nil {
-		return x.Data
-	}
-	return nil
-}
-
-type UpdateUserDataByAccessTokenResult struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Ok    bool   `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
-	Error string `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
-}
-
-func (x *UpdateUserDataByAccessTokenResult) Reset() {
-	*x = UpdateUserDataByAccessTokenResult{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_message_user_proto_msgTypes[6]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *UpdateUserDataByAccessTokenResult) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateUserDataByAccessTokenResult) ProtoMessage() {}
-
-func (x *UpdateUserDataByAccessTokenResult) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_message_user_proto_msgTypes[6]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateUserDataByAccessTokenResult.ProtoReflect.Descriptor instead.
-func (*UpdateUserDataByAccessTokenResult) Descriptor() ([]byte, []int) {
-	return file_protobuf_message_user_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *UpdateUserDataByAccessTokenResult) GetOk() bool {
-	if x != nil {
-		return x.Ok
-	}
-	return false
-}
-
-func (x *UpdateUserDataByAccessTokenResult) GetError() string {
-	if x != nil {
-		return x.Error
-	}
-	return ""
-}
-
-type UserName struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
-}
-
-func (x *UserName) Reset() {
-	*x = UserName{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_message_user_proto_msgTypes[7]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *UserName) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UserName) ProtoMessage() {}
-
-func (x *UserName) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_message_user_proto_msgTypes[7]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UserName.ProtoReflect.Descriptor instead.
-func (*UserName) Descriptor() ([]byte, []int) {
-	return file_protobuf_message_user_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *UserName) GetUsername() string {
-	if x != nil {
-		return x.Username
-	}
-	return ""
-}
-
-type GetUserDataByAccessToken struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Ok       bool      `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
-	Error    string    `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
-	Username string    `protobuf:"bytes,3,opt,name=username,proto3" json:"username,omitempty"`
-	Data     *UserData `protobuf:"bytes,4,opt,name=data,proto3" json:"data,omitempty"`
-}
-
-func (x *GetUserDataByAccessToken) Reset() {
-	*x = GetUserDataByAccessToken{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_message_user_proto_msgTypes[8]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetUserDataByAccessToken) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetUserDataByAccessToken) ProtoMessage() {}
-
-func (x *GetUserDataByAccessToken) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_message_user_proto_msgTypes[8]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetUserDataByAccessToken.ProtoReflect.Descriptor instead.
-func (*GetUserDataByAccessToken) Descriptor() ([]byte, []int) {
-	return file_protobuf_message_user_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *GetUserDataByAccessToken) GetOk() bool {
-	if x != nil {
-		return x.Ok
-	}
-	return false
-}
-
-func (x *GetUserDataByAccessToken) GetError() string {
-	if x != nil {
-		return x.Error
-	}
-	return ""
-}
-
-func (x *GetUserDataByAccessToken) GetUsername() string {
-	if x != nil {
-		return x.Username
-	}
-	return ""
-}
-
-func (x *GetUserDataByAccessToken) GetData() *UserData {
-	if x != nil {
-		return x.Data
-	}
-	return nil
-}
-
-type GetUserDataByAccessTokenResult struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Ok    bool      `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
-	Error string    `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
-	Data  *UserData `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
-}
-
-func (x *GetUserDataByAccessTokenResult) Reset() {
-	*x = GetUserDataByAccessTokenResult{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_message_user_proto_msgTypes[9]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetUserDataByAccessTokenResult) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetUserDataByAccessTokenResult) ProtoMessage() {}
-
-func (x *GetUserDataByAccessTokenResult) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_message_user_proto_msgTypes[9]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetUserDataByAccessTokenResult.ProtoReflect.Descriptor instead.
-func (*GetUserDataByAccessTokenResult) Descriptor() ([]byte, []int) {
-	return file_protobuf_message_user_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *GetUserDataByAccessTokenResult) GetOk() bool {
-	if x != nil {
-		return x.Ok
-	}
-	return false
-}
-
-func (x *GetUserDataByAccessTokenResult) GetError() string {
-	if x != nil {
-		return x.Error
-	}
-	return ""
-}
-
-func (x *GetUserDataByAccessTokenResult) GetData() *UserData {
+func (x *LoginResponse) GetData() *AccessToken {
 	if x != nil {
 		return x.Data
 	}
@@ -639,71 +198,26 @@ var File_protobuf_message_user_proto protoreflect.FileDescriptor
 var file_protobuf_message_user_proto_rawDesc = []byte{
 	0x0a, 0x1b, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x6d, 0x65, 0x73, 0x73, 0x61,
 	0x67, 0x65, 0x2f, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x07, 0x6d,
-	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x30, 0x0a, 0x0b, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73,
-	0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x21, 0x0a, 0x0c, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x5f,
-	0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x61, 0x63, 0x63,
-	0x65, 0x73, 0x73, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x22, 0x45, 0x0a, 0x0b, 0x43, 0x72, 0x65, 0x64,
-	0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c, 0x73, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e,
-	0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e,
-	0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22,
-	0x5d, 0x0a, 0x0b, 0x4c, 0x6f, 0x67, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x12, 0x0e,
-	0x0a, 0x02, 0x6f, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x02, 0x6f, 0x6b, 0x12, 0x14,
-	0x0a, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65,
-	0x72, 0x72, 0x6f, 0x72, 0x12, 0x28, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x03, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x14, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x41, 0x63, 0x63,
-	0x65, 0x73, 0x73, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x22, 0xd1,
-	0x01, 0x0a, 0x08, 0x55, 0x73, 0x65, 0x72, 0x44, 0x61, 0x74, 0x61, 0x12, 0x1d, 0x0a, 0x0a, 0x66,
-	0x69, 0x72, 0x73, 0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x09, 0x66, 0x69, 0x72, 0x73, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x6c, 0x61,
-	0x73, 0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6c,
-	0x61, 0x73, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e,
-	0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e,
-	0x61, 0x6d, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x04, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73,
-	0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73,
-	0x73, 0x77, 0x6f, 0x72, 0x64, 0x12, 0x21, 0x0a, 0x0c, 0x70, 0x68, 0x6f, 0x6e, 0x65, 0x5f, 0x6e,
-	0x75, 0x6d, 0x62, 0x65, 0x72, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x70, 0x68, 0x6f,
-	0x6e, 0x65, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x64, 0x64, 0x72,
-	0x65, 0x73, 0x73, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65,
-	0x73, 0x73, 0x22, 0x60, 0x0a, 0x0e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65,
-	0x73, 0x75, 0x6c, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x6f, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08,
-	0x52, 0x02, 0x6f, 0x6b, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x12, 0x28, 0x0a, 0x04, 0x64, 0x61,
-	0x74, 0x61, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61,
-	0x67, 0x65, 0x2e, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x04,
-	0x64, 0x61, 0x74, 0x61, 0x22, 0x67, 0x0a, 0x1b, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x55, 0x73,
-	0x65, 0x72, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x54, 0x6f,
-	0x6b, 0x65, 0x6e, 0x12, 0x21, 0x0a, 0x0c, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x5f, 0x74, 0x6f,
-	0x6b, 0x65, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x61, 0x63, 0x63, 0x65, 0x73,
-	0x73, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x25, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x55,
-	0x73, 0x65, 0x72, 0x44, 0x61, 0x74, 0x61, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x22, 0x49, 0x0a,
-	0x21, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x44, 0x61, 0x74, 0x61, 0x42,
-	0x79, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x65, 0x73, 0x75,
-	0x6c, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x6f, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x02,
-	0x6f, 0x6b, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x22, 0x26, 0x0a, 0x08, 0x55, 0x73, 0x65, 0x72,
-	0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65,
-	0x22, 0x83, 0x01, 0x0a, 0x18, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x44, 0x61, 0x74, 0x61,
-	0x42, 0x79, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x0e, 0x0a,
-	0x02, 0x6f, 0x6b, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x02, 0x6f, 0x6b, 0x12, 0x14, 0x0a,
-	0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x72,
-	0x72, 0x6f, 0x72, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18,
-	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x12,
-	0x25, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e,
-	0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x44, 0x61, 0x74, 0x61,
-	0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x22, 0x6d, 0x0a, 0x1e, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65,
-	0x72, 0x44, 0x61, 0x74, 0x61, 0x42, 0x79, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x54, 0x6f, 0x6b,
-	0x65, 0x6e, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x6f, 0x6b, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x08, 0x52, 0x02, 0x6f, 0x6b, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x72, 0x72, 0x6f,
-	0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x12, 0x25,
-	0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x6d,
-	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x44, 0x61, 0x74, 0x61, 0x52,
-	0x04, 0x64, 0x61, 0x74, 0x61, 0x42, 0x1f, 0x5a, 0x1d, 0x73, 0x68, 0x61, 0x72, 0x65, 0x2d, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2d, 0x67, 0x65, 0x6e, 0x2f, 0x6d,
-	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x46, 0x0a, 0x0c, 0x4c, 0x6f, 0x67, 0x69, 0x6e, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61,
+	0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x55,
+	0x0a, 0x0b, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x21, 0x0a,
+	0x0c, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x5f, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x0b, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x54, 0x6f, 0x6b, 0x65, 0x6e,
+	0x12, 0x23, 0x0a, 0x0d, 0x72, 0x65, 0x66, 0x72, 0x65, 0x73, 0x68, 0x5f, 0x74, 0x6f, 0x6b, 0x65,
+	0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x72, 0x65, 0x66, 0x72, 0x65, 0x73, 0x68,
+	0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x22, 0x69, 0x0a, 0x0d, 0x4c, 0x6f, 0x67, 0x69, 0x6e, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x73, 0x75, 0x63, 0x63, 0x65, 0x73,
+	0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x73, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73,
+	0x12, 0x14, 0x0a, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x12, 0x28, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x41,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61,
+	0x42, 0x1f, 0x5a, 0x1d, 0x73, 0x68, 0x61, 0x72, 0x65, 0x2d, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2d, 0x67, 0x65, 0x6e, 0x2f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67,
+	0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -718,30 +232,19 @@ func file_protobuf_message_user_proto_rawDescGZIP() []byte {
 	return file_protobuf_message_user_proto_rawDescData
 }
 
-var file_protobuf_message_user_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_protobuf_message_user_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_protobuf_message_user_proto_goTypes = []interface{}{
-	(*AccessToken)(nil),                       // 0: message.AccessToken
-	(*Credentials)(nil),                       // 1: message.Credentials
-	(*LoginResult)(nil),                       // 2: message.LoginResult
-	(*UserData)(nil),                          // 3: message.UserData
-	(*RegisterResult)(nil),                    // 4: message.RegisterResult
-	(*UpdateUserDataByAccessToken)(nil),       // 5: message.UpdateUserDataByAccessToken
-	(*UpdateUserDataByAccessTokenResult)(nil), // 6: message.UpdateUserDataByAccessTokenResult
-	(*UserName)(nil),                          // 7: message.UserName
-	(*GetUserDataByAccessToken)(nil),          // 8: message.GetUserDataByAccessToken
-	(*GetUserDataByAccessTokenResult)(nil),    // 9: message.GetUserDataByAccessTokenResult
+	(*LoginRequest)(nil),  // 0: message.LoginRequest
+	(*AccessToken)(nil),   // 1: message.AccessToken
+	(*LoginResponse)(nil), // 2: message.LoginResponse
 }
 var file_protobuf_message_user_proto_depIdxs = []int32{
-	0, // 0: message.LoginResult.data:type_name -> message.AccessToken
-	0, // 1: message.RegisterResult.data:type_name -> message.AccessToken
-	3, // 2: message.UpdateUserDataByAccessToken.data:type_name -> message.UserData
-	3, // 3: message.GetUserDataByAccessToken.data:type_name -> message.UserData
-	3, // 4: message.GetUserDataByAccessTokenResult.data:type_name -> message.UserData
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	1, // 0: message.LoginResponse.data:type_name -> message.AccessToken
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_protobuf_message_user_proto_init() }
@@ -751,7 +254,7 @@ func file_protobuf_message_user_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_protobuf_message_user_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AccessToken); i {
+			switch v := v.(*LoginRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -763,7 +266,7 @@ func file_protobuf_message_user_proto_init() {
 			}
 		}
 		file_protobuf_message_user_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Credentials); i {
+			switch v := v.(*AccessToken); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -775,91 +278,7 @@ func file_protobuf_message_user_proto_init() {
 			}
 		}
 		file_protobuf_message_user_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*LoginResult); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_protobuf_message_user_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UserData); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_protobuf_message_user_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RegisterResult); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_protobuf_message_user_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateUserDataByAccessToken); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_protobuf_message_user_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateUserDataByAccessTokenResult); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_protobuf_message_user_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UserName); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_protobuf_message_user_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUserDataByAccessToken); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_protobuf_message_user_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUserDataByAccessTokenResult); i {
+			switch v := v.(*LoginResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -877,7 +296,7 @@ func file_protobuf_message_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_protobuf_message_user_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

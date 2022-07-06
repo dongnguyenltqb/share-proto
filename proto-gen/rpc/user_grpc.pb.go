@@ -23,10 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserClient interface {
-	GetUserDataByAccessToken(ctx context.Context, in *message.AccessToken, opts ...grpc.CallOption) (*message.GetUserDataByAccessTokenResult, error)
-	UpdateUserDataByAccessToken(ctx context.Context, in *message.UpdateUserDataByAccessToken, opts ...grpc.CallOption) (*message.UpdateUserDataByAccessTokenResult, error)
-	UserLogin(ctx context.Context, in *message.Credentials, opts ...grpc.CallOption) (*message.LoginResult, error)
-	UserRegister(ctx context.Context, in *message.UserData, opts ...grpc.CallOption) (*message.RegisterResult, error)
+	Login(ctx context.Context, in *message.LoginRequest, opts ...grpc.CallOption) (*message.LoginResponse, error)
 }
 
 type userClient struct {
@@ -37,36 +34,9 @@ func NewUserClient(cc grpc.ClientConnInterface) UserClient {
 	return &userClient{cc}
 }
 
-func (c *userClient) GetUserDataByAccessToken(ctx context.Context, in *message.AccessToken, opts ...grpc.CallOption) (*message.GetUserDataByAccessTokenResult, error) {
-	out := new(message.GetUserDataByAccessTokenResult)
-	err := c.cc.Invoke(ctx, "/rpc.User/GetUserDataByAccessToken", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userClient) UpdateUserDataByAccessToken(ctx context.Context, in *message.UpdateUserDataByAccessToken, opts ...grpc.CallOption) (*message.UpdateUserDataByAccessTokenResult, error) {
-	out := new(message.UpdateUserDataByAccessTokenResult)
-	err := c.cc.Invoke(ctx, "/rpc.User/UpdateUserDataByAccessToken", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userClient) UserLogin(ctx context.Context, in *message.Credentials, opts ...grpc.CallOption) (*message.LoginResult, error) {
-	out := new(message.LoginResult)
-	err := c.cc.Invoke(ctx, "/rpc.User/UserLogin", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userClient) UserRegister(ctx context.Context, in *message.UserData, opts ...grpc.CallOption) (*message.RegisterResult, error) {
-	out := new(message.RegisterResult)
-	err := c.cc.Invoke(ctx, "/rpc.User/UserRegister", in, out, opts...)
+func (c *userClient) Login(ctx context.Context, in *message.LoginRequest, opts ...grpc.CallOption) (*message.LoginResponse, error) {
+	out := new(message.LoginResponse)
+	err := c.cc.Invoke(ctx, "/rpc.User/Login", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -74,33 +44,19 @@ func (c *userClient) UserRegister(ctx context.Context, in *message.UserData, opt
 }
 
 // UserServer is the server API for User service.
-// All implementations must embed UnimplementedUserServer
+// All implementations should embed UnimplementedUserServer
 // for forward compatibility
 type UserServer interface {
-	GetUserDataByAccessToken(context.Context, *message.AccessToken) (*message.GetUserDataByAccessTokenResult, error)
-	UpdateUserDataByAccessToken(context.Context, *message.UpdateUserDataByAccessToken) (*message.UpdateUserDataByAccessTokenResult, error)
-	UserLogin(context.Context, *message.Credentials) (*message.LoginResult, error)
-	UserRegister(context.Context, *message.UserData) (*message.RegisterResult, error)
-	mustEmbedUnimplementedUserServer()
+	Login(context.Context, *message.LoginRequest) (*message.LoginResponse, error)
 }
 
-// UnimplementedUserServer must be embedded to have forward compatible implementations.
+// UnimplementedUserServer should be embedded to have forward compatible implementations.
 type UnimplementedUserServer struct {
 }
 
-func (UnimplementedUserServer) GetUserDataByAccessToken(context.Context, *message.AccessToken) (*message.GetUserDataByAccessTokenResult, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUserDataByAccessToken not implemented")
+func (UnimplementedUserServer) Login(context.Context, *message.LoginRequest) (*message.LoginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
 }
-func (UnimplementedUserServer) UpdateUserDataByAccessToken(context.Context, *message.UpdateUserDataByAccessToken) (*message.UpdateUserDataByAccessTokenResult, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserDataByAccessToken not implemented")
-}
-func (UnimplementedUserServer) UserLogin(context.Context, *message.Credentials) (*message.LoginResult, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UserLogin not implemented")
-}
-func (UnimplementedUserServer) UserRegister(context.Context, *message.UserData) (*message.RegisterResult, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UserRegister not implemented")
-}
-func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 
 // UnsafeUserServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to UserServer will
@@ -113,74 +69,20 @@ func RegisterUserServer(s grpc.ServiceRegistrar, srv UserServer) {
 	s.RegisterService(&User_ServiceDesc, srv)
 }
 
-func _User_GetUserDataByAccessToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(message.AccessToken)
+func _User_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(message.LoginRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServer).GetUserDataByAccessToken(ctx, in)
+		return srv.(UserServer).Login(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/rpc.User/GetUserDataByAccessToken",
+		FullMethod: "/rpc.User/Login",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).GetUserDataByAccessToken(ctx, req.(*message.AccessToken))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _User_UpdateUserDataByAccessToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(message.UpdateUserDataByAccessToken)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServer).UpdateUserDataByAccessToken(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/rpc.User/UpdateUserDataByAccessToken",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).UpdateUserDataByAccessToken(ctx, req.(*message.UpdateUserDataByAccessToken))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _User_UserLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(message.Credentials)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServer).UserLogin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/rpc.User/UserLogin",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).UserLogin(ctx, req.(*message.Credentials))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _User_UserRegister_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(message.UserData)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServer).UserRegister(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/rpc.User/UserRegister",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).UserRegister(ctx, req.(*message.UserData))
+		return srv.(UserServer).Login(ctx, req.(*message.LoginRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -193,20 +95,8 @@ var User_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*UserServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetUserDataByAccessToken",
-			Handler:    _User_GetUserDataByAccessToken_Handler,
-		},
-		{
-			MethodName: "UpdateUserDataByAccessToken",
-			Handler:    _User_UpdateUserDataByAccessToken_Handler,
-		},
-		{
-			MethodName: "UserLogin",
-			Handler:    _User_UserLogin_Handler,
-		},
-		{
-			MethodName: "UserRegister",
-			Handler:    _User_UserRegister_Handler,
+			MethodName: "Login",
+			Handler:    _User_Login_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -7,8 +7,5 @@ option go_package="share-proto/proto-gen/rpc";
 import "message/user.proto";
 
 service User{
-    rpc GetUserDataByAccessToken(message.AccessToken) returns (message.GetUserDataByAccessTokenResult){};
-    rpc UpdateUserDataByAccessToken(message.UpdateUserDataByAccessToken) returns (message.UpdateUserDataByAccessTokenResult){};
-    rpc UserLogin(message.Credentials) returns (message.LoginResult){};
-    rpc UserRegister(message.UserData) returns (message.RegisterResult){};
+    rpc Login(message.LoginRequest) returns (message.LoginResponse){};
 }

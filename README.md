@@ -13,18 +13,10 @@ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 
 ```
 
-#### gen message protobuf
+#### gen message 
 
 ---
 
 ```shell
-protoc --go_out=.. protobuf/message/*.proto
-```
-
-### gen service protobuf
-
----
-
-```shell
-protoc --proto_path=protobuf --go-grpc_out=.. protobuf/rpc/*.proto
+make
 ```

@@ -4,62 +4,18 @@ package message;
 
 option go_package = "share-proto/proto-gen/message";
 
-
-message AccessToken{
-    string access_token = 1;
+message LoginRequest {
+  string username = 1;
+  string password = 2;
 }
 
-message Credentials{
-    string username = 1;
-    string password = 2;
+message AccessToken {
+  string access_token = 1;
+  string refresh_token = 2;
 }
 
-message LoginResult{
-    bool ok = 1;
-    string error = 2;
-    AccessToken data = 3;
-}
-
-message UserData{
-    string first_name = 1;
-    string last_name = 2;
-    string username = 3;
-    string email = 4;
-    string password  =5;
-    string phone_number = 6;
-    string address = 7;
-}
-
-message RegisterResult{
-    bool ok  = 1;
-    string error = 2;
-    AccessToken data = 3;
-}
-
-
-message UpdateUserDataByAccessToken{
-  string access_token  = 1; 
-  UserData data  = 2;
-}
-
-message UpdateUserDataByAccessTokenResult{
-  bool ok = 1;
+message LoginResponse{
+  bool success = 1;
   string error = 2;
-}
-
-message UserName{
-  string username =1;
-}
-
-message GetUserDataByAccessToken{
-  bool ok  = 1;
-  string error =2;
-  string username = 3;
-  UserData data = 4;
-}
-
-message GetUserDataByAccessTokenResult{
-  bool ok  =  1;
-  string error =2;
-  UserData data =3;
+  AccessToken data = 3;
 }
