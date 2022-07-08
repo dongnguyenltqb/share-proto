@@ -19,3 +19,18 @@ message LoginResponse{
   string error = 2;
   AccessToken data = 3;
 }
+
+message GetMeRequest {
+  string id = 1;
+}
+
+message GetMeResponse {
+  bool success = 1;
+  string error = 2;
+  User data = 3;
+}
+
+message User {
+  int64 age = 1;
+  string email = 2;
+}
